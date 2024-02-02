@@ -2,7 +2,6 @@ package app
 
 import (
 	"fmt"
-	"mongo-db-go/database"
 	"mongo-db-go/domain"
 	"mongo-db-go/handlers"
 	"mongo-db-go/service"
@@ -14,13 +13,14 @@ import (
 func Startup() {
 	router := mux.NewRouter()
 
-	collection, client, context := database.SetupMongoDB()
-
 	handler := handlers.NewUserHandler(
 		service.NewLocalUserService(
-			domain.NewUserRepoMongo(collection, client, context)))
+			domain.NewUserRepoMongo()))
 
-	router.HandleFunc("/createUser", handler.CreateUser).Methods(http.MethodPost)
+	router.HandleFunc("/create_user", handler.CreateUser).Methods(http.MethodPost)
+	router.HandleFunc("/users/{user_id}", handler.FindUser).Methods(http.MethodGet)
+	router.HandleFunc("/users", handler.FindUsers).Methods(http.MethodGet)
+	router.HandleFunc("/users/delete/{user_id}", handler.DeleteUser).Methods(http.MethodGet)
 
 	fmt.Println("Running at localhost:8080")
 	err := http.ListenAndServe("localhost:8080", router)

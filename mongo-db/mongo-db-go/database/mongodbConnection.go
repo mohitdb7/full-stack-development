@@ -10,8 +10,8 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-func SetupMongoDB() (*mongo.Collection, *mongo.Client, context.Context) {
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+func SetupMongoDB() (*mongo.Collection, *mongo.Client, context.Context, context.CancelFunc) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
@@ -25,15 +25,5 @@ func SetupMongoDB() (*mongo.Collection, *mongo.Client, context.Context) {
 
 	collection := client.Database("mongo-golang-test").Collection("Users")
 
-	// defer func() {
-	// 	cancel()
-
-	// 	if err = client.Disconnect(ctx); err != nil {
-	// 		panic(err)
-	// 	}
-
-	// 	fmt.Println("Close connection is called")
-	// }()
-
-	return collection, client, ctx
+	return collection, client, ctx, cancel
 }
