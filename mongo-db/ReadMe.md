@@ -12,9 +12,9 @@
 > `brew services stop mongodb-community@7.0`
 
 **Mongo DB Compass (GUI) Installation**
-> URL to download and install -> https://www.mongodb.com/try/download/compass
-> URL for intel MAC -> https://downloads.mongodb.com/compass/mongodb-compass-1.42.0-darwin-x64.dmg
-> URL for Apple Silicon MAC -> https://downloads.mongodb.com/compass/mongodb-compass-1.42.0-darwin-arm64.dmg
+> URL to download and install -> https://www.mongodb.com/try/download/compass <br/>
+> URL for intel MAC -> https://downloads.mongodb.com/compass/mongodb-compass-1.42.0-darwin-x64.dmg <br/>
+> URL for Apple Silicon MAC -> https://downloads.mongodb.com/compass/mongodb-compass-1.42.0-darwin-arm64.dmg <br/>
 
 
 - It by defaults connects to:
