@@ -23,7 +23,9 @@ func Startup() {
 	router.HandleFunc("/users/delete/{user_id}", handler.DeleteUser).Methods(http.MethodGet)
 
 	fmt.Println("Running at localhost:8080")
-	err := http.ListenAndServe("localhost:8080", router)
+	//192.168.1.3
+	//172.16.32.1
+	err := http.ListenAndServe("192.168.1.3:8080", router)
 	if err != nil {
 		panic("Cannot start the server")
 	}

@@ -63,7 +63,7 @@ func (uh UserHandler) FindUsers(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	if err := json.NewEncoder(w).Encode(users); err != nil {
-		panic(err)
+		fmt.Fprintf(w, fmt.Sprintf("Cannot parse %v", err))
 	}
 }
 
